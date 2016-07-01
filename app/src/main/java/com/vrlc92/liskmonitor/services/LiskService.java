@@ -580,7 +580,7 @@ public class LiskService {
         String urlRequest = replaceURLWithSettings(TRANSACTIONS_URL, settings);
         urlRequest = urlRequest + "?senderId=" + settings.getLiskAddress() +
                 "&recipientId=" + settings.getLiskAddress() +
-                "&orderBy=t_timestamp:desc";
+                "&orderBy=t_timestamp:desc&limit=10";
 
         Request request = new Request.Builder()
                 .url(urlRequest)

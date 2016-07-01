@@ -32,10 +32,10 @@
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginBottom="@dimen/default_vertical_margin"
                 android:layout_marginEnd="@dimen/table_item_margin_horizontal"
                 android:layout_marginStart="@dimen/table_item_margin_horizontal"
-                android:layout_marginTop="@dimen/text_margin">
+                android:layout_marginTop="@dimen/default_vertical_margin">
 
                 <TextView
                     android:layout_width="0dp"
@@ -43,7 +43,7 @@
                     android:layout_weight="3"
                     android:text="@string/username"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/table_item_font_size"
+                    android:textSize="@dimen/default_font_size"
                     android:textStyle="bold" />
 
                 <EditText
@@ -54,7 +54,7 @@
                     android:hint="@string/empty"
                     android:imeOptions="flagNoExtractUi"
                     android:textAlignment="textEnd"
-                    android:textSize="@dimen/table_item_font_size" />
+                    android:textSize="@dimen/default_font_size" />
             </TableRow>
 
             <TableRow
@@ -73,10 +73,10 @@
                 android:id="@+id/ip_address_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginBottom="@dimen/default_vertical_margin"
                 android:layout_marginEnd="@dimen/table_item_margin_horizontal"
                 android:layout_marginStart="@dimen/table_item_margin_horizontal"
-                android:layout_marginTop="@dimen/text_margin">
+                android:layout_marginTop="@dimen/default_vertical_margin">
 
                 <TextView
                     android:layout_width="0dp"
@@ -84,7 +84,7 @@
                     android:layout_weight="3"
                     android:text="@string/ip_address"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/table_item_font_size"
+                    android:textSize="@dimen/default_font_size"
                     android:textStyle="bold" />
 
                 <EditText
@@ -95,7 +95,7 @@
                     android:hint="@string/ip_address_hint"
                     android:imeOptions="flagNoExtractUi"
                     android:textAlignment="textEnd"
-                    android:textSize="@dimen/table_item_font_size" />
+                    android:textSize="@dimen/default_font_size" />
             </TableRow>
 
             <TableRow
@@ -113,10 +113,10 @@
                 android:id="@+id/port_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginBottom="@dimen/default_vertical_margin"
                 android:layout_marginEnd="@dimen/table_item_margin_horizontal"
                 android:layout_marginStart="@dimen/table_item_margin_horizontal"
-                android:layout_marginTop="@dimen/text_margin">
+                android:layout_marginTop="@dimen/default_vertical_margin">
 
                 <TextView
                     android:layout_width="0dp"
@@ -124,7 +124,7 @@
                     android:layout_weight="3"
                     android:text="@string/port"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/table_item_font_size"
+                    android:textSize="@dimen/default_font_size"
                     android:textStyle="bold" />
 
                 <EditText
@@ -137,7 +137,7 @@
                     android:maxLength="20"
                     android:singleLine="true"
                     android:textAlignment="textEnd"
-                    android:textSize="@dimen/table_item_font_size" />
+                    android:textSize="@dimen/default_font_size" />
             </TableRow>
 
             <TableRow
@@ -155,10 +155,10 @@
                 android:id="@+id/ssl_enabled_container"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginBottom="@dimen/default_vertical_margin"
                 android:layout_marginEnd="@dimen/table_item_margin_horizontal"
                 android:layout_marginStart="@dimen/table_item_margin_horizontal"
-                android:layout_marginTop="@dimen/text_margin">
+                android:layout_marginTop="@dimen/default_vertical_margin">
 
                 <TextView
                     android:layout_width="0dp"
@@ -166,7 +166,7 @@
                     android:layout_weight="3"
                     android:text="@string/ssl_enabled"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/table_item_font_size"
+                    android:textSize="@dimen/default_font_size"
                     android:textStyle="bold" />
 
                 <CheckBox
@@ -189,10 +189,10 @@
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginBottom="@dimen/default_vertical_margin"
                 android:layout_marginEnd="@dimen/table_item_margin_horizontal"
                 android:layout_marginStart="@dimen/table_item_margin_horizontal"
-                android:layout_marginTop="@dimen/text_margin">
+                android:layout_marginTop="@dimen/default_vertical_margin">
 
                 <TextView
                     android:layout_width="0dp"
@@ -200,7 +200,7 @@
                     android:layout_weight="3"
                     android:text="@string/default_server_enabled"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/table_item_font_size"
+                    android:textSize="@dimen/default_font_size"
                     android:textStyle="bold" />
 
                 <CheckBox
@@ -223,10 +223,10 @@
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginBottom="@dimen/default_vertical_margin"
                 android:layout_marginEnd="@dimen/table_item_margin_horizontal"
                 android:layout_marginStart="@dimen/table_item_margin_horizontal"
-                android:layout_marginTop="@dimen/text_margin">
+                android:layout_marginTop="@dimen/default_vertical_margin">
 
                 <TextView
                     android:layout_width="0dp"
@@ -234,7 +234,7 @@
                     android:layout_weight="3"
                     android:text="@string/notification_interval"
                     android:textAlignment="textStart"
-                    android:textSize="@dimen/table_item_font_size"
+                    android:textSize="@dimen/default_font_size"
                     android:textStyle="bold" />
 
                 <Spinner
@@ -244,7 +244,7 @@
                     android:layout_weight="2"
                     android:entries="@array/notification_interval_types"
                     android:textAlignment="textEnd"
-                    android:textSize="@dimen/table_item_font_size" />
+                    android:textSize="@dimen/default_font_size" />
             </TableRow>
 
         </TableLayout>

@@ -53,11 +53,10 @@
     <string name="address">Address</string>
     <string name="productivity">Productivity</string>
     <string name="last_block_forged">Last block forged</string>
-    <string name="delegate_approval">Approval</string>
+    <string name="approval">Approval</string>
 
     <!-- Peers -->
     <string name="status">Status</string>
-    <string name="country">Country</string>
     <string name="version">Version</string>
     <string name="blocks_remaining">Blocks remaining</string>
     <string name="total_blocks">Total blocks</string>
@@ -77,27 +76,26 @@
     <string name="standby">Standby</string>
     <string name="active">Active</string>
     <string name="ranking_status_value">%1$s / %2$s</string>
-
-
-    <string name="account">Account</string>
-    <string name="peer">Peer</string>
     <string name="forging">Forging</string>
-    <string name="build">Build</string>
     <string name="fees">Fees</string>
     <string name="rewards">Rewards</string>
     <string name="forged">Forged</string>
-    <string name="lisks">Lisks</string>
     <string name="not_forging"> - </string>
 
     <!-- Transaction -->
     <string name="transaction_id">Transaction ID</string>
-    <string name="transaction_ammount">Ammount</string>
-    <string name="transaction_type">Type</string>
+    <string name="amount">Amount</string>
+    <string name="type">Type</string>
+    <string name="time">Time</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="fee">Fee</string>
+    <string name="confirmations">Confirmations</string>
+    <string name="second_signature_creation">Second signature creation</string>
+    <string name="delegate_registration">Delegate registration</string>
+    <string name="delegate_vote">Delegate vote</string>
 
     <!-- Errors -->
     <string name="internet_off">Please connect to internet.</string>
     <string name="unable_to_retrieve_data">Unable to retrieve data. Please try again later.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -121,7 +121,7 @@ public class LatestTransactionsFragment extends Fragment implements RequestListe
 
                 RecyclerView rvTransactions = (RecyclerView) view.findViewById(R.id.rvLatestTransactions);
 
-                TransactionAdapter adapter = new TransactionAdapter(transactions);
+                TransactionAdapter adapter = new TransactionAdapter(getContext(), transactions);
                 rvTransactions.setAdapter(adapter);
                 rvTransactions.setLayoutManager(new LinearLayoutManager(getActivity()));
 

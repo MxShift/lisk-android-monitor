@@ -16,7 +16,6 @@ public class Transaction {
 
     private String id;
     private int type;
-    private int subtype;
     private int timestamp;
     private String senderPublicKey;
     private String senderId;
@@ -24,8 +23,6 @@ public class Transaction {
     private long amount;
     private int fee;
     private String signature;
-    private String signSignature;
-    private String companyGeneratorPublicKey;
     private int confirmations;
 
     public String getId() {
@@ -42,14 +39,6 @@ public class Transaction {
 
     public void setType(int type) {
         this.type = type;
-    }
-
-    public int getSubtype() {
-        return subtype;
-    }
-
-    public void setSubtype(int subtype) {
-        this.subtype = subtype;
     }
 
     public int getTimestamp() {
@@ -108,22 +97,6 @@ public class Transaction {
         this.signature = signature;
     }
 
-    public String getSignSignature() {
-        return signSignature;
-    }
-
-    public void setSignSignature(String signSignature) {
-        this.signSignature = signSignature;
-    }
-
-    public String getCompanyGeneratorPublicKey() {
-        return companyGeneratorPublicKey;
-    }
-
-    public void setCompanyGeneratorPublicKey(String companyGeneratorPublicKey) {
-        this.companyGeneratorPublicKey = companyGeneratorPublicKey;
-    }
-
     public int getConfirmations() {
         return confirmations;
     }
@@ -149,12 +122,6 @@ public class Transaction {
             transaction.type = jsonObject.getInt("type");
         } catch (JSONException e) {
             Logger.getLogger(TAG).warning(String.format("transaction.type (%s)", e.getLocalizedMessage()));
-        }
-
-        try {
-            transaction.subtype = jsonObject.getInt("subtype");
-        } catch (JSONException e) {
-            Logger.getLogger(TAG).warning(String.format("transaction.subtype (%s)", e.getLocalizedMessage()));
         }
 
         try {
@@ -200,18 +167,6 @@ public class Transaction {
         }
 
         try {
-            transaction.signSignature = jsonObject.getString("signSignature");
-        } catch (JSONException e) {
-            Logger.getLogger(TAG).warning(String.format("transaction.signSignature (%s)", e.getLocalizedMessage()));
-        }
-
-        try {
-            transaction.companyGeneratorPublicKey = jsonObject.getString("companyGeneratorPublicKey");
-        } catch (JSONException e) {
-            Logger.getLogger(TAG).warning(String.format("transaction.companyGeneratorPublicKey (%s)", e.getLocalizedMessage()));
-        }
-
-        try {
             transaction.confirmations = jsonObject.getInt("confirmations");
         } catch (JSONException e) {
             Logger.getLogger(TAG).warning(String.format("transaction.confirmations (%s)", e.getLocalizedMessage()));
@@ -221,7 +176,7 @@ public class Transaction {
     }
 
     public static List<Transaction> fromJson(JSONArray transactionsJsonArray) {
-        List<Transaction> transactions = new ArrayList<Transaction>();
+        List<Transaction> transactions = new ArrayList<>();
 
         if (transactionsJsonArray != null) {
             for (int i = 0; i < transactionsJsonArray.length(); i++) {

@@ -12,8 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/text_margin"
-        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginBottom="@dimen/default_text_margin"
+        android:layout_marginTop="@dimen/default_text_margin"
         android:orientation="horizontal">
 
         <TextView
@@ -24,7 +24,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:textAlignment="textStart"
-            android:textSize="@dimen/row_font_size" />
+            android:textSize="@dimen/default_font_size" />
 
         <TextView
             android:id="@+id/delegate_name"
@@ -34,7 +34,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:textAlignment="textStart"
-            android:textSize="@dimen/row_font_size" />
+            android:textSize="@dimen/default_font_size" />
 
         <TextView
             android:id="@+id/delegate_address"
@@ -44,7 +44,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:textAlignment="textStart"
-            android:textSize="@dimen/row_font_size" />
+            android:textSize="@dimen/default_font_size" />
 
         <TextView
             android:id="@+id/delegate_productivity"
@@ -54,7 +54,7 @@
             android:ellipsize="end"
             android:lines="1"
             android:textAlignment="textEnd"
-            android:textSize="@dimen/row_font_size" />
+            android:textSize="@dimen/default_font_size" />
     </LinearLayout>
 
 </LinearLayout>

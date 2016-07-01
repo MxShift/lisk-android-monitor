@@ -8,36 +8,6 @@
     android:orientation="vertical"
     tools:context="com.vrlc92.liskmonitor.fragments.LatestTransactionsFragment">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_vertical_margin"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/transaction_id"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="@string/transaction_id"
-            android:textAlignment="textStart"
-            android:textSize="@dimen/row_font_size"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/transaction_ammount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/transaction_ammount"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/row_font_size"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/latest_transactions_refresh_layout"
         android:layout_width="match_parent"
