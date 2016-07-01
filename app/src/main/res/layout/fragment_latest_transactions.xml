@@ -6,7 +6,7 @@
     android:layout_marginRight="@dimen/default_horizontal_margin"
     android:layout_marginTop="@dimen/default_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.vrlc92.liskmonitor.fragments.VotesFragment">
+    tools:context="com.vrlc92.liskmonitor.fragments.LatestTransactionsFragment">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -15,49 +15,36 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/vote_delegate_rank"
+            android:id="@+id/transaction_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:ellipsize="end"
             android:lines="1"
-            android:text="@string/rank"
+            android:text="@string/transaction_id"
             android:textAlignment="textStart"
             android:textSize="@dimen/row_font_size"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/vote_delegate_name"
+            android:id="@+id/transaction_ammount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="@string/username"
-            android:textAlignment="textStart"
+            android:layout_weight="1"
+            android:text="@string/transaction_ammount"
+            android:textAlignment="textEnd"
             android:textSize="@dimen/row_font_size"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/vote_delegate_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="@string/address"
-            android:textAlignment="textStart"
-            android:textSize="@dimen/row_font_size"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/votes_refresh_layout"
+        android:id="@+id/latest_transactions_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvVotes"
+            android:id="@+id/rvLatestTransactions"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

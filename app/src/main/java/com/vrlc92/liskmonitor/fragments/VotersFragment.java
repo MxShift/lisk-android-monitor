@@ -113,7 +113,7 @@ public class VotersFragment extends Fragment implements RequestListener<Voters> 
 
                 RecyclerView rvVoters = (RecyclerView) view.findViewById(R.id.rvVoters);
 
-                VotersAdapter adapter = new VotersAdapter(voters);
+                VotersAdapter adapter = new VotersAdapter(getContext(), voters);
                 rvVoters.setAdapter(adapter);
                 rvVoters.setLayoutManager(new LinearLayoutManager(getActivity()));
 

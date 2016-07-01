@@ -135,7 +135,7 @@ public class Utils {
     }
 
     public static String formatDecimal(double value) {
-        double balance = value / Math.pow(10, 8);
+        double balance = value * Math.pow(10, -8);
         DecimalFormat df = new DecimalFormat("#0.00000000");
         return df.format(balance);
     }

@@ -16,7 +16,6 @@ public class Account {
     private String address;
     private String publicKey;
     private String username;
-    private Long unconfirmedBalance;
     private Long balance;
 
     private static String TAG = Account.class.getSimpleName();
@@ -43,14 +42,6 @@ public class Account {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Long getUnconfirmedBalance() {
-        return unconfirmedBalance;
-    }
-
-    public void setUnconfirmedBalance(Long unconfirmedBalance) {
-        this.unconfirmedBalance = unconfirmedBalance;
     }
 
     public Long getBalance() {
@@ -81,15 +72,9 @@ public class Account {
         }
 
         try {
-            account.username = jsonObject.getString("username");
+            account.username = jsonObject.isNull("username") ? null: jsonObject.getString("username");
         } catch (JSONException e) {
             Logger.getLogger(TAG).warning(String.format("account.username (%s)", e.getLocalizedMessage()));
-        }
-
-        try {
-            account.unconfirmedBalance = jsonObject.getLong("unconfirmedBalance");
-        } catch (JSONException e) {
-            Logger.getLogger(TAG).warning(String.format("account.unconfirmedBalance (%s)", e.getLocalizedMessage()));
         }
 
         try {
@@ -102,7 +87,7 @@ public class Account {
     }
 
     public static List<Account> fromJson(JSONArray accountsJsonArray) {
-        List<Account> accounts = new ArrayList<Account>();
+        List<Account> accounts = new ArrayList<>();
 
         if (accountsJsonArray != null) {
             for (int i = 0; i < accountsJsonArray.length(); i++) {

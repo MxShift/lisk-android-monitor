@@ -11,20 +11,20 @@ import android.view.ViewGroup;
 
 import com.vrlc92.liskmonitor.MainActivity;
 import com.vrlc92.liskmonitor.R;
-import com.vrlc92.liskmonitor.adapters.DelegatesAdapter;
-import com.vrlc92.liskmonitor.models.Delegate;
+import com.vrlc92.liskmonitor.adapters.TransactionAdapter;
 import com.vrlc92.liskmonitor.models.Settings;
+import com.vrlc92.liskmonitor.models.Transaction;
 import com.vrlc92.liskmonitor.services.LiskService;
 import com.vrlc92.liskmonitor.services.RequestListener;
 import com.vrlc92.liskmonitor.utils.Utils;
 
 import java.util.List;
 
-public class DelegatesFragment extends Fragment implements RequestListener<List<Delegate>>{
+public class LatestTransactionsFragment extends Fragment implements RequestListener<List<Transaction>> {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    public DelegatesFragment() {
+    public LatestTransactionsFragment() {
         // Required empty public constructor
     }
 
@@ -37,14 +37,15 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_delegates, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_latest_transactions, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.delegates_refresh_layout);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.latest_transactions_refresh_layout);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 R.color.colorPrimaryDark,
                 R.color.colorAccent);
@@ -56,11 +57,12 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
         });
 
         if (Utils.isOnline(getActivity())) {
-            loadDelegates();
+            loadTransactions();
         } else {
             Utils.showMessage(getResources().getString(R.string.internet_off), view);
         }
     }
+
 
     @Override
     public void onDestroy() {
@@ -71,13 +73,18 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
         super.onDestroy();
     }
 
-    private void loadDelegates() {
+    private void loadTransactions() {
         MainActivity activity = (MainActivity) getActivity();
         if (activity != null) {
             activity.showLoadingIndicatorView();
         }
 
         refreshContent();
+    }
+
+    private void refreshContent() {
+        Settings settings = Utils.getSettings(getActivity());
+        LiskService.getInstance().requestLatestTransactions(settings, this);
     }
 
     @Override
@@ -93,7 +100,7 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
 
                 mSwipeRefreshLayout.setRefreshing(false);
 
-                MainActivity activity = (MainActivity)getActivity();
+                MainActivity activity = (MainActivity) getActivity();
                 if (activity != null) {
                     activity.hideLoadingIndicatorView();
                 }
@@ -102,7 +109,7 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
     }
 
     @Override
-    public void onResponse(final List<Delegate> delegates) {
+    public void onResponse(final List<Transaction> transactions) {
         if (!isAdded()) {
             return;
         }
@@ -112,11 +119,11 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
             public void run() {
                 View view = getView();
 
-                RecyclerView rvDelegates = (RecyclerView) view.findViewById(R.id.rvDelegates);
+                RecyclerView rvTransactions = (RecyclerView) view.findViewById(R.id.rvLatestTransactions);
 
-                DelegatesAdapter adapter = new DelegatesAdapter(delegates);
-                rvDelegates.setAdapter(adapter);
-                rvDelegates.setLayoutManager(new LinearLayoutManager(getActivity()));
+                TransactionAdapter adapter = new TransactionAdapter(transactions);
+                rvTransactions.setAdapter(adapter);
+                rvTransactions.setLayoutManager(new LinearLayoutManager(getActivity()));
 
                 MainActivity activity = (MainActivity) getActivity();
                 if (activity != null) {
@@ -126,11 +133,6 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-    }
-
-    private void refreshContent() {
-        Settings settings = Utils.getSettings(getActivity());
-        LiskService.getInstance().requestDelegates(settings, this);
     }
 
 }

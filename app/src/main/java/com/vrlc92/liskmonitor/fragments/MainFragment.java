@@ -17,6 +17,8 @@ import com.vrlc92.liskmonitor.models.Forging;
 import com.vrlc92.liskmonitor.models.PeerVersion;
 import com.vrlc92.liskmonitor.models.Settings;
 import com.vrlc92.liskmonitor.models.Status;
+import com.vrlc92.liskmonitor.models.Ticker;
+import com.vrlc92.liskmonitor.services.ExchangeService;
 import com.vrlc92.liskmonitor.services.LiskService;
 import com.vrlc92.liskmonitor.services.RequestListener;
 import com.vrlc92.liskmonitor.utils.Utils;
@@ -26,6 +28,7 @@ public class MainFragment extends Fragment {
     private TextView usernameTextview;
     private TextView addressTextview;
     private TextView balanceTextview;
+    private TextView balanceBtcEquivalentTextview;
     private TextView rankTextview;
     private TextView productivityTextview;
     private TextView feesTextview;
@@ -37,6 +40,8 @@ public class MainFragment extends Fragment {
     private TextView lastBlockForgedTextView;
     private TextView delegateApprovalTextView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private double balance = -1;
+    private double liskBTCValue = -1;
 
     public MainFragment() {
         // Required empty public constructor
@@ -59,19 +64,20 @@ public class MainFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        usernameTextview = (TextView)view.findViewById(R.id.account_username);
-        addressTextview = (TextView)view.findViewById(R.id.account_address);
-        balanceTextview = (TextView)view.findViewById(R.id.account_balance);
-        rankTextview = (TextView)view.findViewById(R.id.delegate_rank);
-        productivityTextview = (TextView)view.findViewById(R.id.delegate_productivity);
-        feesTextview = (TextView)view.findViewById(R.id.forgin_fees);
-        rewardsTextview = (TextView)view.findViewById(R.id.forging_rewards);
-        forgedTextview = (TextView)view.findViewById(R.id.forgin_forged);
-        versionTextview = (TextView)view.findViewById(R.id.peer_version);
-        blocksTextview = (TextView)view.findViewById(R.id.sync_blocks);
-        heightTextview = (TextView)view.findViewById(R.id.sync_height);
-        lastBlockForgedTextView = (TextView)view.findViewById(R.id.delegate_last_block_forged);
-        delegateApprovalTextView = (TextView)view.findViewById(R.id.delegate_approval);
+        usernameTextview = (TextView) view.findViewById(R.id.account_username);
+        addressTextview = (TextView) view.findViewById(R.id.account_address);
+        balanceTextview = (TextView) view.findViewById(R.id.account_balance);
+        balanceBtcEquivalentTextview = (TextView) view.findViewById(R.id.balance_btc_equivalent);
+        rankTextview = (TextView) view.findViewById(R.id.delegate_rank);
+        productivityTextview = (TextView) view.findViewById(R.id.delegate_productivity);
+        feesTextview = (TextView) view.findViewById(R.id.forgin_fees);
+        rewardsTextview = (TextView) view.findViewById(R.id.forging_rewards);
+        forgedTextview = (TextView) view.findViewById(R.id.forgin_forged);
+        versionTextview = (TextView) view.findViewById(R.id.peer_version);
+        blocksTextview = (TextView) view.findViewById(R.id.sync_blocks);
+        heightTextview = (TextView) view.findViewById(R.id.sync_height);
+        lastBlockForgedTextView = (TextView) view.findViewById(R.id.delegate_last_block_forged);
+        delegateApprovalTextView = (TextView) view.findViewById(R.id.delegate_approval);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.main_refresh_layout);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
@@ -106,11 +112,12 @@ public class MainFragment extends Fragment {
         super.onDestroy();
     }
 
-    private void loadRequests(){
+    private void loadRequests() {
         loadDelegate();
         loadPeerVersion();
         loadStatus();
         loadLastForgedBlock();
+        loadTicker();
     }
 
     private void loadLastForgedBlock() {
@@ -157,10 +164,10 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void loadDelegate(){
+    private void loadDelegate() {
         Settings settings = Utils.getSettings(getActivity());
 
-        if (Utils.validateUsername(settings.getUsername())){
+        if (Utils.validateUsername(settings.getUsername())) {
             usernameTextview.setText(settings.getUsername());
         }
 
@@ -193,7 +200,13 @@ public class MainFragment extends Fragment {
                     public void run() {
                         hideLoadingIndicatorView();
                         mSwipeRefreshLayout.setRefreshing(false);
-                        rankTextview.setText(String.valueOf(delegate.getRate()));
+
+                        String status = delegate.getRate() <= 101 ? getString(R.string.active) : getString(R.string.standby);
+
+                        rankTextview.setText(getString(R.string.ranking_status_value,
+                                String.valueOf(delegate.getRate()),
+                                status));
+
                         String productivity = delegate.getProductivity() + getString(R.string.percent_symbol);
                         productivityTextview.setText(productivity);
 
@@ -208,7 +221,7 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void loadPeerVersion(){
+    private void loadPeerVersion() {
         Settings settings = Utils.getSettings(getActivity());
 
         LiskService.getInstance().requestPeerVersion(settings, new RequestListener<PeerVersion>() {
@@ -248,7 +261,7 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void loadStatus(){
+    private void loadStatus() {
         Settings settings = Utils.getSettings(getActivity());
 
         LiskService.getInstance().requestStatus(settings, new RequestListener<Status>() {
@@ -289,7 +302,7 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void loadForging(){
+    private void loadForging() {
         Settings settings = Utils.getSettings(getActivity());
 
         LiskService.getInstance().requestForging(settings, new RequestListener<Forging>() {
@@ -335,7 +348,7 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void loadAccount (){
+    private void loadAccount() {
         final Settings settings = Utils.getSettings(getActivity());
 
         LiskService.getInstance().requestAccount(settings, new RequestListener<Account>() {
@@ -344,6 +357,8 @@ public class MainFragment extends Fragment {
                 if (!isAdded()) {
                     return;
                 }
+
+                MainFragment.this.balance = -1;
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -362,16 +377,67 @@ public class MainFragment extends Fragment {
                     return;
                 }
 
+                MainFragment.this.balance = account.getBalance();
+
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         hideLoadingIndicatorView();
                         mSwipeRefreshLayout.setRefreshing(false);
 
-                        String balance = Utils.formatDecimal(account.getBalance());
-
                         addressTextview.setText(account.getAddress());
-                        balanceTextview.setText(balance);
+                        balanceTextview.setText(Utils.formatDecimal(MainFragment.this.balance));
+
+                        if (MainFragment.this.balance > 0 && MainFragment.this.liskBTCValue > 0) {
+                            double balanceBtcEquivalent = MainFragment.this.balance * MainFragment.this.liskBTCValue;
+                            balanceBtcEquivalentTextview.setText(Utils.formatDecimal(balanceBtcEquivalent));
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void loadTicker() {
+        ExchangeService.getInstance().requestLiskTicker(new RequestListener<Ticker>() {
+            @Override
+            public void onFailure(Exception e) {
+                if (!isAdded()) {
+                    return;
+                }
+
+                MainFragment.this.liskBTCValue = -1;
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        hideLoadingIndicatorView();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                        balanceBtcEquivalentTextview.setText(getString(R.string.undefined));
+
+                        Utils.showMessage(getString(R.string.unable_to_retrieve_data), getView());
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(final Ticker ticker) {
+                if (!isAdded()) {
+                    return;
+                }
+
+                MainFragment.this.liskBTCValue = ticker.getLast();
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        hideLoadingIndicatorView();
+                        mSwipeRefreshLayout.setRefreshing(false);
+
+                        if (MainFragment.this.balance > 0 && MainFragment.this.liskBTCValue > 0) {
+                            double balanceBtcEquivalent = MainFragment.this.balance * MainFragment.this.liskBTCValue;
+                            balanceBtcEquivalentTextview.setText(Utils.formatDecimal(balanceBtcEquivalent));
+                        }
                     }
                 });
             }

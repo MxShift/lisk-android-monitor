@@ -14,7 +14,6 @@ public class Peer {
     private Integer port;
     private Integer state;
     private String os;
-    private Integer sharePort;
     private String version;
 
     public enum PeerState {
@@ -80,14 +79,6 @@ public class Peer {
         this.os = os;
     }
 
-    public Integer getSharePort() {
-        return sharePort;
-    }
-
-    public void setSharePort(Integer sharePort) {
-        this.sharePort = sharePort;
-    }
-
     public String getVersion() {
         return version;
     }
@@ -125,12 +116,6 @@ public class Peer {
             peer.os = jsonObject.getString("os");
         } catch (JSONException e) {
             Logger.getLogger(TAG).warning(String.format("peer.os (%s)", e.getLocalizedMessage()));
-        }
-
-        try {
-            peer.sharePort = jsonObject.getInt("sharePort");
-        } catch (JSONException e) {
-            Logger.getLogger(TAG).warning(String.format("peer.sharePort (%s)", e.getLocalizedMessage()));
         }
 
         try {

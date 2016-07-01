@@ -162,7 +162,7 @@ public class Delegate {
     }
 
     public static List<Delegate> fromJson(JSONArray delegatesJsonArray) {
-        List<Delegate> delegates = new ArrayList<Delegate>();
+        List<Delegate> delegates = new ArrayList<>();
 
         if (delegatesJsonArray != null) {
             for (int i = 0; i < delegatesJsonArray.length(); i++) {

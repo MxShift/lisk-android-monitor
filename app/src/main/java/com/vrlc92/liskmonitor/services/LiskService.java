@@ -1,5 +1,6 @@
 package com.vrlc92.liskmonitor.services;
 
+import com.vrlc92.liskmonitor.fragments.LatestTransactionsFragment;
 import com.vrlc92.liskmonitor.models.Account;
 import com.vrlc92.liskmonitor.models.Block;
 import com.vrlc92.liskmonitor.models.Delegate;
@@ -8,6 +9,7 @@ import com.vrlc92.liskmonitor.models.Peer;
 import com.vrlc92.liskmonitor.models.PeerVersion;
 import com.vrlc92.liskmonitor.models.Settings;
 import com.vrlc92.liskmonitor.models.Status;
+import com.vrlc92.liskmonitor.models.Transaction;
 import com.vrlc92.liskmonitor.models.Voters;
 import com.vrlc92.liskmonitor.models.Votes;
 import com.vrlc92.liskmonitor.utils.Utils;
@@ -35,7 +37,7 @@ public class LiskService {
 
     private static String IP_ATTR = "ip";
     private static String PORT_ATTR = "port";
-    private static String CUSTOM_API_URL = IP_ATTR + ":" + PORT_ATTR  + "/api/";
+    private static String CUSTOM_API_URL = IP_ATTR + ":" + PORT_ATTR + "/api/";
     public static final String DEFAULT_API_URL = "https://login.lisk.io/api/";
 
     private static final String DELEGATES_URL = CUSTOM_API_URL + "delegates/?limit=101&offset=0&orderBy=rate:asc";
@@ -48,22 +50,23 @@ public class LiskService {
     private static final String PEER_VERSION_URL = CUSTOM_API_URL + "peers/version";
     private static final String DELEGATE_URL = CUSTOM_API_URL + "delegates/get";
     private static final String BLOCKS_URL = CUSTOM_API_URL + "blocks";
+    private static final String TRANSACTIONS_URL = CUSTOM_API_URL + "transactions";
 
     public static final String HTTP_PROTOCOL = "http://";
     public static final String HTTPS_PROTOCOL = "https://";
 
-    private LiskService(){
+    private LiskService() {
         client = new OkHttpClient();
     }
 
-    public static synchronized LiskService getInstance(){
-        if (instance == null){
+    public static synchronized LiskService getInstance() {
+        if (instance == null) {
             instance = new LiskService();
         }
         return instance;
     }
 
-    public void requestDelegates(Settings settings, final RequestListener<List<Delegate>> listener){
+    public void requestDelegates(Settings settings, final RequestListener<List<Delegate>> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -109,7 +112,7 @@ public class LiskService {
         });
     }
 
-    public void requestPeers(Settings settings, final RequestListener<List<Peer>> listener){
+    public void requestPeers(Settings settings, final RequestListener<List<Peer>> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -165,7 +168,7 @@ public class LiskService {
         });
     }
 
-    public void requestAccount(Settings settings, final RequestListener<Account> listener){
+    public void requestAccount(Settings settings, final RequestListener<Account> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -218,7 +221,7 @@ public class LiskService {
         });
     }
 
-    public void requestVotes(Settings settings, final RequestListener<Votes> listener){
+    public void requestVotes(Settings settings, final RequestListener<Votes> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -272,7 +275,7 @@ public class LiskService {
         });
     }
 
-    public void requestVoters(Settings settings, final RequestListener<Voters> listener){
+    public void requestVoters(Settings settings, final RequestListener<Voters> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -326,7 +329,7 @@ public class LiskService {
         });
     }
 
-    public void requestPeerVersion(Settings settings, final RequestListener<PeerVersion> listener){
+    public void requestPeerVersion(Settings settings, final RequestListener<PeerVersion> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -364,7 +367,7 @@ public class LiskService {
         });
     }
 
-    public void requestStatus(Settings settings, final RequestListener<Status> listener){
+    public void requestStatus(Settings settings, final RequestListener<Status> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -402,7 +405,7 @@ public class LiskService {
         });
     }
 
-    public void requestForging(Settings settings, final RequestListener<Forging> listener){
+    public void requestForging(Settings settings, final RequestListener<Forging> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -446,7 +449,7 @@ public class LiskService {
         });
     }
 
-    public void requestDelegate(Settings settings, final RequestListener<Delegate> listener){
+    public void requestDelegate(Settings settings, final RequestListener<Delegate> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -497,7 +500,8 @@ public class LiskService {
             }
         });
     }
-    public void requestLastBlockForged(Settings settings, final RequestListener<Block> listener){
+
+    public void requestLastBlockForged(Settings settings, final RequestListener<Block> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -548,6 +552,62 @@ public class LiskService {
                     } else {
                         listener.onFailure(new Exception("Invalid Block"));
                     }
+                } catch (JSONException e) {
+                    listener.onFailure(e);
+                }
+            }
+        });
+    }
+
+    public void requestLatestTransactions(Settings settings, final RequestListener<List<Transaction>> listener) {
+        if (!settings.getDefaultServerEnabled()) {
+            if (!Utils.validateIpAddress(settings.getIpAddress())) {
+                listener.onFailure(new Exception("Invalid IP Address"));
+                return;
+            }
+
+            if (!Utils.validatePort(settings.getPort())) {
+                listener.onFailure(new Exception("Invalid Port"));
+                return;
+            }
+        }
+
+        if (!Utils.validateLiskAddress(settings.getLiskAddress())) {
+            listener.onFailure(new Exception("Invalid Lisk Address"));
+            return;
+        }
+
+        String urlRequest = replaceURLWithSettings(TRANSACTIONS_URL, settings);
+        urlRequest = urlRequest + "?senderId=" + settings.getLiskAddress() +
+                "&recipientId=" + settings.getLiskAddress() +
+                "&orderBy=t_timestamp:desc";
+
+        Request request = new Request.Builder()
+                .url(urlRequest)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                listener.onFailure(e);
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                String jsonData = response.body().string();
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonData);
+
+                    Boolean success = jsonObject.getBoolean("success");
+
+                    List<Transaction> transactions = new ArrayList<>();
+
+                    if (success) {
+                        JSONArray transactionsJsonArray = jsonObject.getJSONArray("transactions");
+
+                        transactions.addAll(Transaction.fromJson(transactionsJsonArray));
+                    }
+
+                    listener.onResponse(transactions);
                 } catch (JSONException e) {
                     listener.onFailure(e);
                 }

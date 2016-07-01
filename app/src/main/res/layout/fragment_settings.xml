@@ -1,141 +1,261 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:orientation="vertical"
     tools:context=".fragments.SettingsFragment">
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/username"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="@string/empty"
-                android:imeOptions="flagNoExtractUi" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/ip_address_container"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/ip_address"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/ip_address"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="@string/ip_address_hint"
-                android:imeOptions="flagNoExtractUi" />
-        </TableRow>
-
-
-        <TableRow
-            android:id="@+id/port_container"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/port"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/port"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="@string/port_hint"
-                android:inputType="number"
-                android:maxLength="20"
-                android:singleLine="true" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/ssl_enabled_container"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/ssl_enabled"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <CheckBox
-                android:id="@+id/ssl_enabled"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/default_server_enabled"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <CheckBox
-                android:id="@+id/default_server_enabled"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="@string/notification_interval"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Spinner
-                android:id="@+id/notification_interval"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:entries="@array/notification_interval_types" />
-        </TableRow>
-
-    </TableLayout>
-
-    <Button
-        android:id="@+id/save_btn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="@string/save_action" />
-</LinearLayout>
+        android:layout_marginBottom="@dimen/default_vertical_margin"
+        android:layout_marginLeft="@dimen/default_horizontal_margin"
+        android:layout_marginRight="@dimen/default_horizontal_margin"
+        android:layout_marginTop="@dimen/default_vertical_margin"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_height="@dimen/divisor_height"
+                android:background="@color/lineColor">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divisor_height"
+                    android:layout_span="2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/table_item_margin_horizontal"
+                android:layout_marginStart="@dimen/table_item_margin_horizontal"
+                android:layout_marginTop="@dimen/text_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/username"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/table_item_font_size"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="@string/empty"
+                    android:imeOptions="flagNoExtractUi"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/table_item_font_size" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/ip_address_line"
+                android:layout_height="@dimen/divisor_height"
+                android:background="@color/lineColor">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divisor_height"
+                    android:layout_span="2" />
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/ip_address_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/table_item_margin_horizontal"
+                android:layout_marginStart="@dimen/table_item_margin_horizontal"
+                android:layout_marginTop="@dimen/text_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/ip_address"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/table_item_font_size"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/ip_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="@string/ip_address_hint"
+                    android:imeOptions="flagNoExtractUi"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/table_item_font_size" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/port_line"
+                android:layout_height="@dimen/divisor_height"
+                android:background="@color/lineColor">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divisor_height"
+                    android:layout_span="2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/port_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/table_item_margin_horizontal"
+                android:layout_marginStart="@dimen/table_item_margin_horizontal"
+                android:layout_marginTop="@dimen/text_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/port"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/table_item_font_size"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/port"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="@string/port_hint"
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/table_item_font_size" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/ssl_enabled_line"
+                android:layout_height="@dimen/divisor_height"
+                android:background="@color/lineColor">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divisor_height"
+                    android:layout_span="2" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/ssl_enabled_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/table_item_margin_horizontal"
+                android:layout_marginStart="@dimen/table_item_margin_horizontal"
+                android:layout_marginTop="@dimen/text_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/ssl_enabled"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/table_item_font_size"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/ssl_enabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="@dimen/divisor_height"
+                android:background="@color/lineColor">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divisor_height"
+                    android:layout_span="2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/table_item_margin_horizontal"
+                android:layout_marginStart="@dimen/table_item_margin_horizontal"
+                android:layout_marginTop="@dimen/text_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/default_server_enabled"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/table_item_font_size"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/default_server_enabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="@dimen/divisor_height"
+                android:background="@color/lineColor">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divisor_height"
+                    android:layout_span="2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/table_item_margin_horizontal"
+                android:layout_marginStart="@dimen/table_item_margin_horizontal"
+                android:layout_marginTop="@dimen/text_margin">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/notification_interval"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/table_item_font_size"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/notification_interval"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:entries="@array/notification_interval_types"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/table_item_font_size" />
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/save_btn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/save_action" />
+
+    </LinearLayout>
+</ScrollView>

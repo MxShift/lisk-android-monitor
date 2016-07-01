@@ -68,6 +68,11 @@ public class SettingsFragment extends Fragment implements OnClickListener {
         final View viewIpAddressContainer = view.findViewById(R.id.ip_address_container);
         final View viewPortContainer = view.findViewById(R.id.port_container);
         final View viewSSLEnabledContainer = view.findViewById(R.id.ssl_enabled_container);
+
+        final View viewIpAddressLine = view.findViewById(R.id.ip_address_line);
+        final View viewPortLine = view.findViewById(R.id.port_line);
+        final View viewSSLEnabledLine = view.findViewById(R.id.ssl_enabled_line);
+
         final Spinner notificationIntervalSpinner = (Spinner) view.findViewById(R.id.notification_interval);
 
         final Settings settings = Utils.getSettings(getActivity());
@@ -91,9 +96,14 @@ public class SettingsFragment extends Fragment implements OnClickListener {
             editTextIpAddress.setEnabled(false);
             editTextPort.setEnabled(false);
             checkboxSslEnabled.setEnabled(false);
+
             viewIpAddressContainer.setVisibility(View.GONE);
             viewPortContainer.setVisibility(View.GONE);
             viewSSLEnabledContainer.setVisibility(View.GONE);
+
+            viewIpAddressLine.setVisibility(View.GONE);
+            viewPortLine.setVisibility(View.GONE);
+            viewSSLEnabledLine.setVisibility(View.GONE);
         }
 
         checkBoxDefaultServerEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -108,6 +118,10 @@ public class SettingsFragment extends Fragment implements OnClickListener {
                 viewIpAddressContainer.setVisibility(isChecked ? View.GONE : View.VISIBLE);
                 viewPortContainer.setVisibility(isChecked ? View.GONE : View.VISIBLE);
                 viewSSLEnabledContainer.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+
+                viewIpAddressLine.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+                viewPortLine.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+                viewSSLEnabledLine.setVisibility(isChecked ? View.GONE : View.VISIBLE);
 
                 editTextIpAddress.setEnabled(!isChecked);
                 editTextPort.setEnabled(!isChecked);

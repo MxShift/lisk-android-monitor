@@ -20,10 +20,12 @@ import java.util.List;
 public class VotersAdapter extends
         RecyclerView.Adapter<VotersAdapter.ViewHolder> {
 
+    private Context mContext;
     private Voters mVoters;
     private List<Account> mAccounts;
 
-    public VotersAdapter(Voters voters) {
+    public VotersAdapter(Context context, Voters voters) {
+        mContext = context;
         mVoters = voters;
         mAccounts = mVoters.getAccounts();
     }
@@ -52,6 +54,8 @@ public class VotersAdapter extends
 
         if (Utils.validateUsername(account.getUsername())) {
             usernameTextView.setText(account.getUsername());
+        } else {
+            usernameTextView.setText(mContext.getString(R.string.undefined));
         }
 
         String balance = Utils.formatDecimal(account.getBalance());
@@ -70,7 +74,6 @@ public class VotersAdapter extends
         public TextView balanceTextView;
 
         public ViewHolder(View itemView) {
-
             super(itemView);
 
             addressTextView = (TextView) itemView.findViewById(R.id.voter_address);

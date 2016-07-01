@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.vrlc92.liskmonitor.fragments.DelegatesFragment;
+import com.vrlc92.liskmonitor.fragments.LatestTransactionsFragment;
 import com.vrlc92.liskmonitor.fragments.MainFragment;
 import com.vrlc92.liskmonitor.fragments.PeersFragment;
 import com.vrlc92.liskmonitor.fragments.SettingsFragment;
@@ -161,6 +162,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             fragment = new MainFragment();
             setTitle(R.string.nav_home);
+        } else if (id == R.id.nav_latest_transactions) {
+            fragment = new LatestTransactionsFragment();
+            setTitle(R.string.nav_latest_transactions);
         } else if (id == R.id.nav_peers) {
             fragment = new PeersFragment();
             setTitle(R.string.nav_peers);
@@ -214,11 +218,12 @@ public class MainActivity extends AppCompatActivity
 
     enum NavItem {
         HOME(0),
-        PEERS(1),
-        DELEGATES(2),
-        SETTINGS(3),
+        LATEST_TRANSACTIONS(1),
+        PEERS(2),
+        DELEGATES(3),
         VOTES(4),
-        VOTERS(5);
+        VOTERS(5),
+        SETTINGS(6);
 
         private int index;
 
