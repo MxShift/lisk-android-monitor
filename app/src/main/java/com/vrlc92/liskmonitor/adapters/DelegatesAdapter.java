@@ -18,9 +18,11 @@ import java.util.List;
 public class DelegatesAdapter extends
         RecyclerView.Adapter<DelegatesAdapter.ViewHolder> {
 
-    private List<Delegate> mDelegates;
+    private final Context mContext;
+    private final List<Delegate> mDelegates;
 
-    public DelegatesAdapter(List<Delegate> delegates) {
+    public DelegatesAdapter(Context context, List<Delegate> delegates) {
+        mContext = context;
         mDelegates = delegates;
     }
 
@@ -42,10 +44,12 @@ public class DelegatesAdapter extends
         TextView productivityTextView = holder.productivityTextView;
 
         Delegate delegate = mDelegates.get(position);
-        rankTextView.setText(delegate.getRate().toString());
+        rankTextView.setText(String.valueOf(delegate.getRate()));
         nameTextView.setText(delegate.getUsername());
         addressTextView.setText(delegate.getAddress());
-        productivityTextView.setText(delegate.getProductivity() + "%");
+
+        productivityTextView.setText(mContext.getString(R.string.percentage_value,
+                String.valueOf(delegate.getProductivity())));
     }
 
     @Override
@@ -55,10 +59,10 @@ public class DelegatesAdapter extends
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView rankTextView;
-        public TextView nameTextView;
-        public TextView addressTextView;
-        public TextView productivityTextView;
+        public final TextView rankTextView;
+        public final TextView nameTextView;
+        public final TextView addressTextView;
+        public final TextView productivityTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);

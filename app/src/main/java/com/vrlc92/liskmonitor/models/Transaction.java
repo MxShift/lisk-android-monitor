@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * Created by victorlins on 6/28/16.
  */
 public class Transaction {
-    private static String TAG = Transaction.class.getSimpleName();
+    private static final String TAG = Transaction.class.getSimpleName();
 
     private String id;
     private int type;

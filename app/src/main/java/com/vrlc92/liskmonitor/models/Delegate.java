@@ -23,7 +23,7 @@ public class Delegate {
     private Double productivity;
     private Double approval;
 
-    private static String TAG = Delegate.class.getSimpleName();
+    private static final String TAG = Delegate.class.getSimpleName();
 
     public String getUsername() {
         return username;

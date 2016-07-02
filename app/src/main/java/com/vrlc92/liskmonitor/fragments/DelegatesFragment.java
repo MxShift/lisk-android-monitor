@@ -29,12 +29,6 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_delegates, container, false);
@@ -114,7 +108,7 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
 
                 RecyclerView rvDelegates = (RecyclerView) view.findViewById(R.id.rvDelegates);
 
-                DelegatesAdapter adapter = new DelegatesAdapter(delegates);
+                DelegatesAdapter adapter = new DelegatesAdapter(getContext(), delegates);
                 rvDelegates.setAdapter(adapter);
                 rvDelegates.setLayoutManager(new LinearLayoutManager(getActivity()));
 

@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  */
 public class Ticker {
 
-    private static String TAG = Ticker.class.getSimpleName();
+    private static final String TAG = Ticker.class.getSimpleName();
 
     private double last;
     private double lowestAsk;

@@ -21,17 +21,10 @@ import com.vrlc92.liskmonitor.utils.Utils;
 
 public class VotersFragment extends Fragment implements RequestListener<Voters> {
 
-    private static String TAG = VotersFragment.class.getSimpleName();
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     public VotersFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     @Override

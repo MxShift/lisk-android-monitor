@@ -13,14 +13,14 @@ public class Settings {
     private boolean defaultServerEnabled;
     private long notificationInterval;
 
-    public static String USERNAME_ATTR = "settings.username";
-    public static String LISK_ADDRESS_ATTR = "settings.lisk_address";
-    public static String PUBLIC_KEY_ATTR = "settings.public_key";
-    public static String IP_ATTR = "settings.ip_address";
-    public static String PORT_ATTR = "settings.port";
-    public static String SSL_ENABLED_ATTR = "settings.ssl_enabled";
-    public static String DEFAULT_SERVER_ENABLED_ATTR = "settings.default_server_enabled";
-    public static String NOTIFICATION_INTERVAL_ATTR = "settings.notification_interval_attr";
+    public static final String USERNAME_ATTR = "settings.username";
+    public static final String LISK_ADDRESS_ATTR = "settings.lisk_address";
+    public static final String PUBLIC_KEY_ATTR = "settings.public_key";
+    public static final String IP_ATTR = "settings.ip_address";
+    public static final String PORT_ATTR = "settings.port";
+    public static final String SSL_ENABLED_ATTR = "settings.ssl_enabled";
+    public static final String DEFAULT_SERVER_ENABLED_ATTR = "settings.default_server_enabled";
+    public static final String NOTIFICATION_INTERVAL_ATTR = "settings.notification_interval_attr";
 
     public String getUsername() {
         return username;

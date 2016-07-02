@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SettingsFragment.OnSavedSettingsListener
 {
 
-    private ForgingAlarmReceiver mAlarm = new ForgingAlarmReceiver();
+    private final ForgingAlarmReceiver mAlarm = new ForgingAlarmReceiver();
     private AVLoadingIndicatorView mLoadingIndicatorView;
     private ActionBarDrawerToggle mToggle;
     private Menu mMenu;
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity
         VOTERS(5),
         SETTINGS(6);
 
-        private int index;
+        private final int index;
 
         NavItem(int index){
             this.index = index;

@@ -22,17 +22,10 @@ import java.util.List;
 
 public class PeersFragment extends Fragment implements RequestListener<List<Peer>> {
 
-    private static String TAG = PeersFragment.class.getSimpleName();
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     public PeersFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     @Override

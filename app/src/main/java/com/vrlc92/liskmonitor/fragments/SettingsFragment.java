@@ -1,7 +1,6 @@
 package com.vrlc92.liskmonitor.fragments;
 
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -27,7 +26,6 @@ import com.vrlc92.liskmonitor.utils.Utils;
 
 public class SettingsFragment extends Fragment implements OnClickListener {
 
-    private static String TAG = SettingsFragment.class.getSimpleName();
     private OnSavedSettingsListener mListener;
     private static final int INTERVAL_FIFTEEN_MINUTES_INDEX = 0;
     private static final int INTERVAL_HALF_HOUR_INDEX = 1;
@@ -36,11 +34,6 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 
     public SettingsFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override

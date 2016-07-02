@@ -19,11 +19,9 @@ import java.util.List;
 public class VotesAdapter extends
         RecyclerView.Adapter<VotesAdapter.ViewHolder> {
 
-    private Votes mVotes;
-    private List<Delegate> mDelegates;
+    private final List<Delegate> mDelegates;
 
     public VotesAdapter(Votes votes) {
-        mVotes = votes;
         mDelegates = votes.getDelegates();
     }
 
@@ -44,7 +42,7 @@ public class VotesAdapter extends
         TextView addressTextView = holder.addressTextView;
 
         Delegate delegate = mDelegates.get(position);
-        rankTextView.setText(delegate.getRate().toString());
+        rankTextView.setText(String.valueOf(delegate.getRate()));
         nameTextView.setText(delegate.getUsername());
         addressTextView.setText(delegate.getAddress());
     }
@@ -56,9 +54,9 @@ public class VotesAdapter extends
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView rankTextView;
-        public TextView nameTextView;
-        public TextView addressTextView;
+        public final TextView rankTextView;
+        public final TextView nameTextView;
+        public final TextView addressTextView;
 
         public ViewHolder(View itemView) {
 

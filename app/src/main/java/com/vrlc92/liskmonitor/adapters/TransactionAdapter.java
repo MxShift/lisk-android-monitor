@@ -2,7 +2,6 @@ package com.vrlc92.liskmonitor.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,8 @@ import java.util.List;
 public class TransactionAdapter extends
         RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
 
-    private Context mContext;
-    private List<Transaction> mTransactions;
+    private final Context mContext;
+    private final List<Transaction> mTransactions;
 
     public TransactionAdapter(Context context, List<Transaction> transactions) {
         mContext = context;
@@ -79,13 +78,13 @@ public class TransactionAdapter extends
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView transactionIdTextView;
-        public TextView transactionTimeTextView;
-        public TextView transactionSenderIdTextView;
-        public TextView transactionRecipientIdTextView;
-        public TextView transactionConfirmationsTextView;
-        public TextView transactionFeeTextView;
-        public TextView transactionAmountTextView;
+        public final TextView transactionIdTextView;
+        public final TextView transactionTimeTextView;
+        public final TextView transactionSenderIdTextView;
+        public final TextView transactionRecipientIdTextView;
+        public final TextView transactionConfirmationsTextView;
+        public final TextView transactionFeeTextView;
+        public final TextView transactionAmountTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);

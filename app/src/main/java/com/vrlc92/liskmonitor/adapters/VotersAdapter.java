@@ -20,14 +20,12 @@ import java.util.List;
 public class VotersAdapter extends
         RecyclerView.Adapter<VotersAdapter.ViewHolder> {
 
-    private Context mContext;
-    private Voters mVoters;
-    private List<Account> mAccounts;
+    private final Context mContext;
+    private final List<Account> mAccounts;
 
     public VotersAdapter(Context context, Voters voters) {
         mContext = context;
-        mVoters = voters;
-        mAccounts = mVoters.getAccounts();
+        mAccounts = voters.getAccounts();
     }
 
     @Override
@@ -69,9 +67,9 @@ public class VotersAdapter extends
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView addressTextView;
-        public TextView usernameTextView;
-        public TextView balanceTextView;
+        public final TextView addressTextView;
+        public final TextView usernameTextView;
+        public final TextView balanceTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);

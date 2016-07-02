@@ -22,16 +22,15 @@ import com.vrlc92.liskmonitor.utils.Utils;
  * Created by victorlins on 5/19/16.
  */
 public class ForgingSchedulingService extends IntentService {
-    private static String TAG = ForgingSchedulingService.class.getSimpleName();
+    private static final String TAG = ForgingSchedulingService.class.getSimpleName();
 
     public ForgingSchedulingService() {
         super(TAG);
     }
 
-    public static final int NOTIFICATION_ID = 1;
+    private static final int NOTIFICATION_ID = 1;
     private static final long THIRTY_MINUTES_IN_MILLISECONDS = 1800000;
 
-    private NotificationManager mNotificationManager;
     private Intent mIntent;
 
     @Override
@@ -66,7 +65,7 @@ public class ForgingSchedulingService extends IntentService {
     }
 
     private void sendNotification(String msg, boolean warning) {
-        mNotificationManager = (NotificationManager)
+        NotificationManager notificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
@@ -91,6 +90,6 @@ public class ForgingSchedulingService extends IntentService {
         }
 
         mBuilder.setContentIntent(contentIntent);
-        mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+        notificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
 }

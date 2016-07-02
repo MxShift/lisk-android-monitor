@@ -21,7 +21,7 @@ public class Peer {
         DISCONNECTED(1),
         CONNECTED(2);
 
-        private int state;
+        private final int state;
 
         PeerState(int state) {
             this.state = state;
@@ -45,7 +45,7 @@ public class Peer {
         }
     }
 
-    private static String TAG = Peer.class.getSimpleName();
+    private static final String TAG = Peer.class.getSimpleName();
 
     public String getIp() {
         return ip;

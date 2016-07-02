@@ -13,7 +13,7 @@ public class PeerVersion {
     private String version;
     private String build;
 
-    private static String TAG = Status.class.getSimpleName();
+    private static final String TAG = PeerVersion.class.getSimpleName();
 
     public String getVersion() {
         return version;

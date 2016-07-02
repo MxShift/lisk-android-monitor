@@ -1,15 +1,11 @@
 package com.vrlc92.liskmonitor.services;
 
-import com.vrlc92.liskmonitor.models.Delegate;
-import com.vrlc92.liskmonitor.models.Settings;
 import com.vrlc92.liskmonitor.models.Ticker;
-import com.vrlc92.liskmonitor.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -22,7 +18,7 @@ import okhttp3.Response;
  */
 public class ExchangeService {
     private static ExchangeService instance;
-    private OkHttpClient client;
+    private final OkHttpClient client;
     private static final String URL_TICKER = "https://poloniex.com/public?command=returnTicker";
     private static final String CURRENCY_PAIR = "BTC_LSK";
 

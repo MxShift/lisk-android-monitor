@@ -27,7 +27,7 @@ public class Block {
     private long confirmations;
     private long totalForged;
 
-    private static String TAG = Delegate.class.getSimpleName();
+    private static final String TAG = Block.class.getSimpleName();
 
     public String getId() {
         return id;

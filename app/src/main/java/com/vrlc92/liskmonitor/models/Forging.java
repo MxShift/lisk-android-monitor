@@ -14,7 +14,7 @@ public class Forging {
     private Long rewards;
     private Long forged;
 
-    private static String TAG = Forging.class.getSimpleName();
+    private static final String TAG = Forging.class.getSimpleName();
 
     public Long getFees() {
         return fees;

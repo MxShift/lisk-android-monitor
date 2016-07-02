@@ -1,6 +1,5 @@
 package com.vrlc92.liskmonitor.services;
 
-import com.vrlc92.liskmonitor.fragments.LatestTransactionsFragment;
 import com.vrlc92.liskmonitor.models.Account;
 import com.vrlc92.liskmonitor.models.Block;
 import com.vrlc92.liskmonitor.models.Delegate;
@@ -33,12 +32,12 @@ import okhttp3.Response;
  */
 public class LiskService {
     private static LiskService instance;
-    private OkHttpClient client;
+    private final OkHttpClient client;
 
-    private static String IP_ATTR = "ip";
-    private static String PORT_ATTR = "port";
-    private static String CUSTOM_API_URL = IP_ATTR + ":" + PORT_ATTR + "/api/";
-    public static final String DEFAULT_API_URL = "https://login.lisk.io/api/";
+    private static final String IP_ATTR = "ip";
+    private static final String PORT_ATTR = "port";
+    private static final String CUSTOM_API_URL = IP_ATTR + ":" + PORT_ATTR + "/api/";
+    private static final String DEFAULT_API_URL = "https://login.lisk.io/api/";
 
     private static final String DELEGATES_URL = CUSTOM_API_URL + "delegates/?limit=101&offset=0&orderBy=rate:asc";
     private static final String ACTIVE_PEERS_URL = CUSTOM_API_URL + "peers";
@@ -52,8 +51,8 @@ public class LiskService {
     private static final String BLOCKS_URL = CUSTOM_API_URL + "blocks";
     private static final String TRANSACTIONS_URL = CUSTOM_API_URL + "transactions";
 
-    public static final String HTTP_PROTOCOL = "http://";
-    public static final String HTTPS_PROTOCOL = "https://";
+    private static final String HTTP_PROTOCOL = "http://";
+    private static final String HTTPS_PROTOCOL = "https://";
 
     private LiskService() {
         client = new OkHttpClient();

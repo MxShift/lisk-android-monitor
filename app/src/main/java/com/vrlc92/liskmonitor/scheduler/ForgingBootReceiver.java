@@ -10,7 +10,7 @@ import com.vrlc92.liskmonitor.utils.Utils;
  * Created by victorlins on 5/21/16.
  */
 public class ForgingBootReceiver extends BroadcastReceiver {
-    ForgingAlarmReceiver alarm = new ForgingAlarmReceiver();
+    private final ForgingAlarmReceiver alarm = new ForgingAlarmReceiver();
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -13,7 +13,7 @@ public class Status {
     private Long blocks;
     private Long height;
 
-    private static String TAG = Status.class.getSimpleName();
+    private static final String TAG = Status.class.getSimpleName();
 
     public Long getBlocks() {
         return blocks;

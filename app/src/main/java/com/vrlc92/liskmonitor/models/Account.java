@@ -18,7 +18,7 @@ public class Account {
     private String username;
     private Long balance;
 
-    private static String TAG = Account.class.getSimpleName();
+    private static final String TAG = Account.class.getSimpleName();
 
     public String getAddress() {
         return address;

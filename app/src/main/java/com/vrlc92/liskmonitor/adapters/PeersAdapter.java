@@ -20,8 +20,8 @@ import java.util.List;
 public class PeersAdapter extends
         RecyclerView.Adapter<PeersAdapter.ViewHolder> {
 
-    private Context mContext;
-    private List<Peer> mPeers;
+    private final Context mContext;
+    private final List<Peer> mPeers;
 
     public PeersAdapter(Context context, List<Peer> peers) {
         mContext = context;
@@ -77,10 +77,10 @@ public class PeersAdapter extends
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView ipAddressTextView;
-        public TextView portTextView;
-        public ImageView statusImageView;
-        public TextView versionTextView;
+        public final TextView ipAddressTextView;
+        public final TextView portTextView;
+        public final ImageView statusImageView;
+        public final TextView versionTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);

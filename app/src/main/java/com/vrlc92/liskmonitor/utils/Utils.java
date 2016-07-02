@@ -31,10 +31,10 @@ public class Utils {
     private static final Pattern PATTERN_IP_ADDRESS = Pattern.compile(
             "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
     private static final String ALARM_ATTR = "alarm_key";
-    private static int MAX_PORT_NUMBER = 65535;
-    private static String START_DATE = "24/05/2016 17:00:00";
-    private static String FORMAT_DATE = "dd/MM/yyyy HH:mm:ss";
-    private static String TIME_ZONE = "UTC";
+    private static final int MAX_PORT_NUMBER = 65535;
+    private static final String START_DATE = "24/05/2016 17:00:00";
+    private static final String FORMAT_DATE = "dd/MM/yyyy HH:mm:ss";
+    private static final String TIME_ZONE = "UTC";
 
     private Utils() {
     }
