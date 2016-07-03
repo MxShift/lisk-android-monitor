@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * Created by victorlins on 4/14/16.
  */
 
-public class Delegate {
+public class Delegate implements Comparable<Delegate> {
     private String username;
     private String address;
     private String publicKey;
@@ -180,6 +180,11 @@ public class Delegate {
         }
 
         return delegates;
+    }
+
+    @Override
+    public int compareTo(Delegate delegate) {
+        return rate.compareTo(delegate.rate);
     }
 
 }

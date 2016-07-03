@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="@dimen/default_horizontal_margin"
     android:layout_marginRight="@dimen/default_horizontal_margin"
-    android:layout_marginTop="@dimen/default_vertical_margin"
     android:orientation="vertical"
     tools:context="com.vrlc92.liskmonitor.fragments.LatestTransactionsFragment">
 

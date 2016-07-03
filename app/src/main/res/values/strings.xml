@@ -3,10 +3,9 @@
     <string name="app_name">Lisk Monitor</string>
     <string name="authors">vrlc92 and gpheheise</string>
     <string name="action_alarm">Alarm</string>
-    <string name="empty"/>
+    <string name="empty" />
     <string name="undefined">-</string>
     <string name="percent_symbol">%</string>
-    <string name="percentage_value">%1$s @string/percent_symbol</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="current_version">Version 1.1.0</string>

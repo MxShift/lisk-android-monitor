@@ -39,7 +39,7 @@ public class LiskService {
     private static final String CUSTOM_API_URL = IP_ATTR + ":" + PORT_ATTR + "/api/";
     private static final String DEFAULT_API_URL = "https://login.lisk.io/api/";
 
-    private static final String DELEGATES_URL = CUSTOM_API_URL + "delegates/?limit=101&offset=0&orderBy=rate:asc";
+    private static final String DELEGATES_URL = CUSTOM_API_URL + "delegates/";
     private static final String ACTIVE_PEERS_URL = CUSTOM_API_URL + "peers";
     private static final String VOTES_URL = CUSTOM_API_URL + "accounts/delegates/";
     private static final String ACCOUNT_URL = CUSTOM_API_URL + "accounts/";
@@ -65,7 +65,15 @@ public class LiskService {
         return instance;
     }
 
-    public void requestDelegates(Settings settings, final RequestListener<List<Delegate>> listener) {
+    public void requestActiveDelegates(Settings settings, final RequestListener<List<Delegate>> listener) {
+        requestDelegates(settings, 0, listener);
+    }
+
+    public void requestStandyByDelegates(Settings settings, final RequestListener<List<Delegate>> listener) {
+        requestDelegates(settings, 101, listener);
+    }
+
+    private void requestDelegates(Settings settings, int offset, final RequestListener<List<Delegate>> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
                 listener.onFailure(new Exception("Invalid IP Address"));
@@ -77,7 +85,10 @@ public class LiskService {
                 return;
             }
         }
-        String urlRequest = replaceURLWithSettings(DELEGATES_URL, settings);
+
+        String urlRequest = DELEGATES_URL + "?limit=101&offset=" + offset + "&orderBy=rate:asc";
+
+        urlRequest = replaceURLWithSettings(urlRequest, settings);
 
         Request request = new Request.Builder()
                 .url(urlRequest)
@@ -624,4 +635,5 @@ public class LiskService {
         apiUrl = apiUrl.replace(PORT_ATTR, String.valueOf(settings.getPort()));
         return (settings.getSslEnabled() ? HTTPS_PROTOCOL : HTTP_PROTOCOL) + apiUrl;
     }
+
 }

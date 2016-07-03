@@ -27,8 +27,7 @@ import com.vrlc92.liskmonitor.utils.Utils;
 import com.wang.avi.AVLoadingIndicatorView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SettingsFragment.OnSavedSettingsListener
-{
+        implements NavigationView.OnNavigationItemSelectedListener, SettingsFragment.OnSavedSettingsListener {
 
     private final ForgingAlarmReceiver mAlarm = new ForgingAlarmReceiver();
     private AVLoadingIndicatorView mLoadingIndicatorView;
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void showLoadingIndicatorView(){
+    public void showLoadingIndicatorView() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    public void hideLoadingIndicatorView(){
+    public void hideLoadingIndicatorView() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity
 
         MenuItem menuItem = menu.findItem(R.id.action_alarm);
 
-        if (Utils.alarmEnabled(this)){
+        if (Utils.alarmEnabled(this)) {
             menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_alarm_on_white_24dp));
         } else {
             menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_alarm_off_white_24dp));
@@ -127,13 +126,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_alarm) {
 
             boolean alarmEnabled = Utils.alarmEnabled(this);
-            if (Utils.enableAlarm(this, !alarmEnabled)){
+            if (Utils.enableAlarm(this, !alarmEnabled)) {
 
                 MenuItem menuItem = mMenu.findItem(R.id.action_alarm);
 
                 alarmEnabled = Utils.alarmEnabled(this);
 
-                if (alarmEnabled){
+                if (alarmEnabled) {
                     menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_alarm_on_white_24dp));
                     mAlarm.setAlarm(this);
                 } else {
@@ -144,7 +143,7 @@ public class MainActivity extends AppCompatActivity
 
             View view = this.findViewById(android.R.id.content);
 
-            int stringMessageId = alarmEnabled? R.string.alarm_on : R.string.alarm_off;
+            int stringMessageId = alarmEnabled ? R.string.alarm_on : R.string.alarm_off;
             Utils.showMessage(getResources().getString(stringMessageId), view);
 
             return true;
@@ -227,7 +226,7 @@ public class MainActivity extends AppCompatActivity
 
         private final int index;
 
-        NavItem(int index){
+        NavItem(int index) {
             this.index = index;
         }
 

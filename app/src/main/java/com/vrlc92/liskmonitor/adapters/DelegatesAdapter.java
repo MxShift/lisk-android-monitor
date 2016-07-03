@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.vrlc92.liskmonitor.R;
 import com.vrlc92.liskmonitor.models.Delegate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,11 +20,15 @@ public class DelegatesAdapter extends
         RecyclerView.Adapter<DelegatesAdapter.ViewHolder> {
 
     private final Context mContext;
-    private final List<Delegate> mDelegates;
+    private List<Delegate> mDelegates;
 
     public DelegatesAdapter(Context context, List<Delegate> delegates) {
         mContext = context;
         mDelegates = delegates;
+    }
+
+    public void setDelegates(List<Delegate> mDelegates) {
+        this.mDelegates = new ArrayList<>(mDelegates);
     }
 
     @Override
@@ -40,16 +45,18 @@ public class DelegatesAdapter extends
     public void onBindViewHolder(ViewHolder holder, int position) {
         TextView rankTextView = holder.rankTextView;
         TextView nameTextView = holder.nameTextView;
-        TextView addressTextView = holder.addressTextView;
+        TextView approvalTextView = holder.approvalTextView;
         TextView productivityTextView = holder.productivityTextView;
 
         Delegate delegate = mDelegates.get(position);
         rankTextView.setText(String.valueOf(delegate.getRate()));
         nameTextView.setText(delegate.getUsername());
-        addressTextView.setText(delegate.getAddress());
 
-        productivityTextView.setText(mContext.getString(R.string.percentage_value,
-                String.valueOf(delegate.getProductivity())));
+        String approval = delegate.getApproval() + mContext.getString(R.string.percent_symbol);
+        approvalTextView.setText(approval);
+
+        productivityTextView.setText(String.valueOf(delegate.getProductivity() +
+                mContext.getString(R.string.percent_symbol)));
     }
 
     @Override
@@ -61,7 +68,7 @@ public class DelegatesAdapter extends
 
         public final TextView rankTextView;
         public final TextView nameTextView;
-        public final TextView addressTextView;
+        public final TextView approvalTextView;
         public final TextView productivityTextView;
 
         public ViewHolder(View itemView) {
@@ -69,7 +76,7 @@ public class DelegatesAdapter extends
 
             rankTextView = (TextView) itemView.findViewById(R.id.delegate_rank);
             nameTextView = (TextView) itemView.findViewById(R.id.delegate_name);
-            addressTextView = (TextView) itemView.findViewById(R.id.delegate_address);
+            approvalTextView = (TextView) itemView.findViewById(R.id.delegate_approval);
             productivityTextView = (TextView) itemView.findViewById(R.id.delegate_productivity);
         }
     }

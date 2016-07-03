@@ -12,6 +12,8 @@ import com.vrlc92.liskmonitor.models.Account;
 import com.vrlc92.liskmonitor.models.Voters;
 import com.vrlc92.liskmonitor.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,7 +27,8 @@ public class VotersAdapter extends
 
     public VotersAdapter(Context context, Voters voters) {
         mContext = context;
-        mAccounts = voters.getAccounts();
+        mAccounts = new ArrayList<>(voters.getAccounts());
+        Collections.sort(mAccounts);
     }
 
     @Override

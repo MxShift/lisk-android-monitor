@@ -18,11 +18,15 @@ import com.vrlc92.liskmonitor.services.LiskService;
 import com.vrlc92.liskmonitor.services.RequestListener;
 import com.vrlc92.liskmonitor.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DelegatesFragment extends Fragment implements RequestListener<List<Delegate>>{
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private List<Delegate> mDelegates = new ArrayList<>();
+    private DelegatesAdapter mDelegatesAdapter;
 
     public DelegatesFragment() {
         // Required empty public constructor
@@ -37,6 +41,13 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mDelegatesAdapter = new DelegatesAdapter(getContext(), mDelegates);
+
+        RecyclerView rvDelegates = (RecyclerView) view.findViewById(R.id.rvDelegates);
+
+        rvDelegates.setAdapter(mDelegatesAdapter);
+        rvDelegates.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.delegates_refresh_layout);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
@@ -101,16 +112,17 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
             return;
         }
 
+        mDelegates.addAll(delegates);
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                View view = getView();
 
-                RecyclerView rvDelegates = (RecyclerView) view.findViewById(R.id.rvDelegates);
-
-                DelegatesAdapter adapter = new DelegatesAdapter(getContext(), delegates);
-                rvDelegates.setAdapter(adapter);
-                rvDelegates.setLayoutManager(new LinearLayoutManager(getActivity()));
+                if (mDelegates.size() > 101) {
+                    Collections.sort(mDelegates);
+                    mDelegatesAdapter.setDelegates(mDelegates);
+                    mDelegatesAdapter.notifyDataSetChanged();
+                }
 
                 MainActivity activity = (MainActivity) getActivity();
                 if (activity != null) {
@@ -124,7 +136,11 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
 
     private void refreshContent() {
         Settings settings = Utils.getSettings(getActivity());
-        LiskService.getInstance().requestDelegates(settings, this);
+
+        mDelegates.clear();
+
+        LiskService.getInstance().requestActiveDelegates(settings, this);
+        LiskService.getInstance().requestStandyByDelegates(settings, this);
     }
 
 }

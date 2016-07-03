@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * Created by victorlins on 4/16/16.
  */
 
-public class Account {
+public class Account implements Comparable<Account> {
     private String address;
     private String publicKey;
     private String username;
@@ -105,5 +105,10 @@ public class Account {
         }
 
         return accounts;
+    }
+
+    @Override
+    public int compareTo(Account account) {
+        return account.balance.compareTo(balance);
     }
 }
