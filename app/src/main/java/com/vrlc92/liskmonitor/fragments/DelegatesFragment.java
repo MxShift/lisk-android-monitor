@@ -122,14 +122,14 @@ public class DelegatesFragment extends Fragment implements RequestListener<List<
                     Collections.sort(mDelegates);
                     mDelegatesAdapter.setDelegates(mDelegates);
                     mDelegatesAdapter.notifyDataSetChanged();
-                }
 
-                MainActivity activity = (MainActivity) getActivity();
-                if (activity != null) {
-                    activity.hideLoadingIndicatorView();
-                }
+                    MainActivity activity = (MainActivity) getActivity();
+                    if (activity != null) {
+                        activity.hideLoadingIndicatorView();
+                    }
 
-                mSwipeRefreshLayout.setRefreshing(false);
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
