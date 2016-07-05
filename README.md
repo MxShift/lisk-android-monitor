@@ -10,3 +10,7 @@ Lisk Monitor is an app to monitor your delegate account.
 <br />
 <br />
 Authors: vrlc92 and gpheheise.
+<br />
+<br />
+![liskmonitor](https://cloud.githubusercontent.com/assets/937766/16589364/2ffd7a48-42a9-11e6-8029-cf4d436e5f09.gif)
+
