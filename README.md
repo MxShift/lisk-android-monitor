@@ -1,4 +1,4 @@
-# LiskMonitor
+# Lisk Monitor
 
 Lisk: https://lisk.io/
 <br />
