@@ -136,7 +136,7 @@ public class Ticker {
         }
 
         try {
-            ticker.last = tickerJson.getDouble("low24hr");
+            ticker.low24hr = tickerJson.getDouble("low24hr");
         } catch (JSONException e) {
             Logger.getLogger(TAG).warning(String.format("ticker.low24hr (%s)", e.getLocalizedMessage()));
         }
