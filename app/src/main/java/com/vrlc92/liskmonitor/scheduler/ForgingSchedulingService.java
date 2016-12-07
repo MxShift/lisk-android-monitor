@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -84,6 +86,8 @@ public class ForgingSchedulingService extends IntentService {
         if (warning) {
             mBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000});
             mBuilder.setColor(Color.RED);
+            Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+            mBuilder.setSound(uri);
         } else {
             int colorId = ContextCompat.getColor(this, R.color.colorPrimary);
             mBuilder.setColor(colorId);

@@ -9,6 +9,12 @@
             android:title="@string/nav_home" />
 
         <item
+            android:id="@+id/nav_forged_blocks"
+            android:checked="true"
+            android:icon="@drawable/ic_history_black_36dp"
+            android:title="@string/nav_forged_blocks" />
+
+        <item
             android:id="@+id/nav_latest_transactions"
             android:checked="true"
             android:icon="@drawable/ic_compare_arrows_black_36dp"

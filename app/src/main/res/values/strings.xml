@@ -8,13 +8,14 @@
     <string name="percent_symbol">%</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="current_version">Version 1.1.1</string>
+    <string name="current_version">Version 1.2.0</string>
 
     <string name="alarm_on">Notifications on</string>
     <string name="alarm_off">Notifications off</string>
 
     <string name="nav_home">Home</string>
     <string name="nav_latest_transactions">Latest Transactions</string>
+    <string name="nav_forged_blocks">Forged Blocks</string>
     <string name="nav_peers">Peers</string>
     <string name="nav_delegates">Delegates</string>
     <string name="nav_settings">Settings</string>
@@ -48,6 +49,9 @@
     <string name="productivity">Productivity</string>
     <string name="last_block_forged">Last block forged</string>
     <string name="approval">Approval</string>
+    <string name="forged_blocks">Produced blocks</string>
+    <string name="missed_blocks">Missed blocks</string>
+    <string name="forged_missed_blocks">Forged / Missed blocks</string>
 
     <!-- Peers -->
     <string name="status">Status</string>
@@ -59,17 +63,19 @@
     <string name="balance">Balance</string>
 
     <!-- Main -->
-    <string name="summary">Summary</string>
+    <string name="account">Account</string>
     <string name="total_balance">Total balance</string>
     <string name="btc_equivalent">BTC equivalent</string>
+    <string name="usd_equivalent">USD equivalent</string>
+    <string name="eur_equivalent">EUR equivalent</string>
     <string name="delegate">Delegate</string>
     <string name="name">Name</string>
-    <string name="uptime">Uptime</string>
     <string name="rank_status">Rank / Status</string>
     <string name="server">Server</string>
     <string name="standby">Standby</string>
     <string name="active">Active</string>
     <string name="ranking_status_value">%1$s / %2$s</string>
+    <string name="forged_missed_value">%1$s / %2$s</string>
     <string name="forging">Forging</string>
     <string name="fees">Fees</string>
     <string name="rewards">Rewards</string>
@@ -87,6 +93,10 @@
     <string name="second_signature_creation">Second signature creation</string>
     <string name="delegate_registration">Delegate registration</string>
     <string name="delegate_vote">Delegate vote</string>
+
+    <!-- Block -->
+    <string name="height">Height</string>
+    <string name="reward">Reward</string>
 
     <!-- Errors -->
     <string name="internet_off">Please connect to internet.</string>

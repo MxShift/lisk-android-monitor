@@ -74,7 +74,42 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/uptime"
+                android:text="@string/rank_status"
+                android:textAlignment="textStart"
+                android:textSize="@dimen/default_font_size" />
+
+            <TextView
+                android:id="@+id/delegate_rank"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textAlignment="textEnd"
+                android:textSize="@dimen/default_font_size" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="@dimen/divisor_height"
+            android:background="@color/lineColor">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/divisor_height"
+                android:layout_span="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_vertical_margin"
+            android:layout_marginEnd="@dimen/table_item_margin_horizontal"
+            android:layout_marginStart="@dimen/table_item_margin_horizontal"
+            android:layout_marginTop="@dimen/default_vertical_margin">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/productivity"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/default_font_size" />
 
@@ -108,16 +143,16 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/rank_status"
+                android:layout_weight="2"
+                android:text="@string/forged_missed_blocks"
                 android:textAlignment="textStart"
                 android:textSize="@dimen/default_font_size" />
 
             <TextView
-                android:id="@+id/delegate_rank"
+                android:id="@+id/delegate_forged_missed_blocks"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:textAlignment="textEnd"
                 android:textSize="@dimen/default_font_size" />
         </TableRow>

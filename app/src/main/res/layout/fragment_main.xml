@@ -21,17 +21,17 @@
             android:orientation="vertical">
 
             <include
-                layout="@layout/layout_main_summary"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <include
                 layout="@layout/layout_main_delegate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
             <include
                 layout="@layout/layout_main_forging"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <include
+                layout="@layout/layout_main_account"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

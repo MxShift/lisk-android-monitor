@@ -1,5 +1,6 @@
 package com.vrlc92.liskmonitor.services;
 
+import com.vrlc92.liskmonitor.fragments.BlocksFragment;
 import com.vrlc92.liskmonitor.models.Account;
 import com.vrlc92.liskmonitor.models.Block;
 import com.vrlc92.liskmonitor.models.Delegate;
@@ -530,7 +531,7 @@ public class LiskService {
         }
 
         String urlRequest = replaceURLWithSettings(BLOCKS_URL, settings);
-        urlRequest = urlRequest + "?generatorPublicKey=" + settings.getPublicKey() + "&limit=1&orderBy=height:desc";
+        urlRequest = urlRequest + "?generatorPublicKey=" + settings.getPublicKey() + "&limit=1&offset=0&orderBy=height:desc";
 
         Request request = new Request.Builder()
                 .url(urlRequest)
@@ -569,6 +570,58 @@ public class LiskService {
         });
     }
 
+    public void requestBlocks(Settings settings, final RequestListener<List<Block>> listener) {
+        if (!settings.getDefaultServerEnabled()) {
+            if (!Utils.validateIpAddress(settings.getIpAddress())) {
+                listener.onFailure(new Exception("Invalid IP Address"));
+                return;
+            }
+
+            if (!Utils.validatePort(settings.getPort())) {
+                listener.onFailure(new Exception("Invalid Port"));
+                return;
+            }
+        }
+
+        if (!Utils.validatePublicKey(settings.getPublicKey())) {
+            listener.onFailure(new Exception("Invalid PublickKey"));
+            return;
+        }
+
+        String urlRequest = replaceURLWithSettings(BLOCKS_URL, settings);
+        urlRequest = urlRequest + "?generatorPublicKey=" + settings.getPublicKey() + "&limit=100&offset=0&orderBy=height:desc";
+
+        Request request = new Request.Builder()
+                .url(urlRequest)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                listener.onFailure(e);
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                String jsonData = response.body().string();
+                try {
+                    JSONObject jsonObject = new JSONObject(jsonData);
+
+                    Boolean success = jsonObject.getBoolean("success");
+
+                    if (success) {
+                        JSONArray blocksJsonArray = jsonObject.getJSONArray("blocks");
+
+                        listener.onResponse(Block.fromJson(blocksJsonArray));
+                    } else {
+                        listener.onFailure(new Exception("Invalid Block"));
+                    }
+                } catch (JSONException e) {
+                    listener.onFailure(e);
+                }
+            }
+        });
+    }
+
     public void requestLatestTransactions(Settings settings, final RequestListener<List<Transaction>> listener) {
         if (!settings.getDefaultServerEnabled()) {
             if (!Utils.validateIpAddress(settings.getIpAddress())) {
@@ -590,7 +643,7 @@ public class LiskService {
         String urlRequest = replaceURLWithSettings(TRANSACTIONS_URL, settings);
         urlRequest = urlRequest + "?senderId=" + settings.getLiskAddress() +
                 "&recipientId=" + settings.getLiskAddress() +
-                "&orderBy=t_timestamp:desc&limit=10";
+                "&orderBy=timestamp:desc&limit=10";
 
         Request request = new Request.Builder()
                 .url(urlRequest)

@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.vrlc92.liskmonitor.fragments.BlocksFragment;
 import com.vrlc92.liskmonitor.fragments.DelegatesFragment;
 import com.vrlc92.liskmonitor.fragments.LatestTransactionsFragment;
 import com.vrlc92.liskmonitor.fragments.MainFragment;
@@ -161,6 +162,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             fragment = new MainFragment();
             setTitle(R.string.nav_home);
+        } else if (id == R.id.nav_forged_blocks) {
+            fragment = new BlocksFragment();
+            setTitle(R.string.nav_forged_blocks);
         } else if (id == R.id.nav_latest_transactions) {
             fragment = new LatestTransactionsFragment();
             setTitle(R.string.nav_latest_transactions);
