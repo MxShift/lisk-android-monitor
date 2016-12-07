@@ -79,18 +79,19 @@ public class ForgingSchedulingService extends IntentService {
                         .setContentTitle(getString(R.string.last_block_forged))
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(msg))
-                        .setLights(Color.RED, 1, 1)
                         .setAutoCancel(true)
                         .setContentText(msg);
 
         if (warning) {
             mBuilder.setVibrate(new long[]{1000, 1000, 1000, 1000});
-            mBuilder.setColor(Color.RED);
             Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             mBuilder.setSound(uri);
+            mBuilder.setColor(Color.RED);
+            mBuilder.setLights(Color.RED, 1, 1);
         } else {
             int colorId = ContextCompat.getColor(this, R.color.colorPrimary);
             mBuilder.setColor(colorId);
+            mBuilder.setLights(Color.BLUE, 1, 1);
         }
 
         mBuilder.setContentIntent(contentIntent);
