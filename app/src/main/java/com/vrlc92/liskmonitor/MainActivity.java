@@ -221,12 +221,13 @@ public class MainActivity extends AppCompatActivity
 
     enum NavItem {
         HOME(0),
-        LATEST_TRANSACTIONS(1),
-        PEERS(2),
-        DELEGATES(3),
-        VOTES(4),
-        VOTERS(5),
-        SETTINGS(6);
+        LATEST_BLOCKS(1),
+        LATEST_TRANSACTIONS(2),
+        PEERS(3),
+        DELEGATES(4),
+        VOTES(5),
+        VOTERS(6),
+        SETTINGS(7);
 
         private final int index;
 
