@@ -1,4 +1,4 @@
-# Lisk Monitor
+# Lisk Monitor for Android
 
 Lisk: https://lisk.io/
 <br />
